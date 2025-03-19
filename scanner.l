@@ -34,14 +34,17 @@ char		'.'
 punc		[\(\),:;]
 %%
 
+
 {ws}		{ ECHO; }
 {comment}	{ ECHO; nextLine(); }
 {line}		{ ECHO; nextLine(); }
+"=>"		{ ECHO; return(ARROW); }
 "+"		{ ECHO; return(ADDOP); }
 "*"		{ ECHO; return(MULOP); }
 "&"		{ ECHO; return(ANDOP); }
-"<"		{ ECHO; return(RELOP); }
-"=>"		{ ECHO; return(ARROW); }
+"<" | ">" | "=" | "<>" | ">=" | "<="	{ ECHO; return(RELOP); }
+"|"		{ ECHO; return(OROP);  }
+"!"		{ ECHO; return(NOTOP); }
 begin		{ ECHO; return(BEGIN_); }
 case		{ ECHO; return(CASE); }
 character	{ ECHO; return(CHARACTER); }
@@ -62,7 +65,9 @@ endfold		{ ECHO; return(ENDFOLD); }
 fold		{ ECHO; return(FOLD); }
 if		{ ECHO; return(IF); }
 left		{ ECHO; return(LEFT); }
-real		{ ECHO; return(REAL); }
+
+[0-9]+\.[0-9]+ { ECHO;return(REAL);}
+
 right		{ ECHO; return(RIGHT); }
 then		{ ECHO; return(THEN); }
 
