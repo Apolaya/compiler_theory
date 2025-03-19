@@ -9,9 +9,10 @@
 #include <cstdio>
 #include <string>
 
+#include "listing.h"
+
 using namespace std;
 
-#include "listing.h"
 
 static int lineNumber;
 static string error = "";

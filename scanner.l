@@ -2,8 +2,14 @@
    Project 1 Skeleton
    UMGC CITE
    Summer 2023 */
+   
+   //jonathan apolaya
+   //UMGC CMSC 430 
+
 
 /* This file contains flex input file */
+
+
 
 %{
 #include <cstdio>
@@ -50,6 +56,15 @@ others		{ ECHO; return(OTHERS); }
 returns		{ ECHO; return(RETURNS); }
 switch		{ ECHO; return(SWITCH); }
 when		{ ECHO; return(WHEN); }
+else		{ ECHO; return(ELSE); }
+elif		{ ECHO; return(ELIF); }
+endfold		{ ECHO; return(ENDFOLD); }
+fold		{ ECHO; return(FOLD); }
+if		{ ECHO; return(IF); }
+left		{ ECHO; return(LEFT); }
+real		{ ECHO; return(REAL); }
+right		{ ECHO; return(RIGHT); }
+then		{ ECHO; return(THEN); }
 
 {id}		{ ECHO; return(IDENTIFIER);}
 {dec}		{ ECHO; return(INT_LITERAL); }
