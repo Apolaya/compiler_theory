@@ -39,7 +39,7 @@ punc		[\(\),:;]
 {comment}	{ ECHO; nextLine(); }
 {line}		{ ECHO; nextLine(); }
 "=>"		{ ECHO; return(ARROW); }
-"+"		{ ECHO; return(ADDOP); }
+"+" | "-"		{ ECHO; return(ADDOP); }
 "*"		{ ECHO; return(MULOP); }
 "&"		{ ECHO; return(ANDOP); }
 "<" | ">" | "=" | "<>" | ">=" | "<="	{ ECHO; return(RELOP); }
