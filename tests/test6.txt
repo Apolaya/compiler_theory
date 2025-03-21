@@ -11,7 +11,7 @@ function main b: integer, c: integer returns integer;
      ab1_cd2: real is 4.5e-1;
      hex: integer is #2aF;
      char1: character is 'C';
-     char2: character is '\n';
+     char2: character is '\t';
 begin
      hex + 2;
 end;

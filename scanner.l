@@ -30,8 +30,9 @@ line		[\n]
 id		[A-Za-z]([A-Za-z0-9])*
 digit		[0-9]
 dec		{digit}+
-char		'.'
-punc		[\(\),:;]
+char		'([^\\]|\\[btnrf'\\])'
+hex		"#"[0-9A-Fa-f]+
+punc		[\(\),:;_]
 %%
 
 
@@ -39,10 +40,22 @@ punc		[\(\),:;]
 {comment}	{ ECHO; nextLine(); }
 {line}		{ ECHO; nextLine(); }
 "=>"		{ ECHO; return(ARROW); }
-"+" | "-"		{ ECHO; return(ADDOP); }
+"+" 		{ ECHO; return(ADDOP); }
+"-"		{ ECHO; return(ADDOP); }
+"/"		{ ECHO; return (ADDOP);}
 "*"		{ ECHO; return(MULOP); }
 "&"		{ ECHO; return(ANDOP); }
-"<" | ">" | "=" | "<>" | ">=" | "<="	{ ECHO; return(RELOP); }
+"%"		{ ECHO; return (REMOP);}
+"^"		{ ECHO; return (EXPOP);}
+"~"		{ ECHO; return (NEGOP);}
+
+"<"     { ECHO; return(RELOP); }
+">"     { ECHO; return(RELOP); }
+"="     { ECHO; return(RELOP); }
+"<>"    { ECHO; return(RELOP); }
+">="    { ECHO; return(RELOP); }
+"<="    { ECHO; return(RELOP); }
+
 "|"		{ ECHO; return(OROP);  }
 "!"		{ ECHO; return(NOTOP); }
 begin		{ ECHO; return(BEGIN_); }
@@ -66,11 +79,11 @@ fold		{ ECHO; return(FOLD); }
 if		{ ECHO; return(IF); }
 left		{ ECHO; return(LEFT); }
 
-[0-9]+\.[0-9]+ { ECHO;return(REAL);}
-
+((\.[0-9]+)|([0-9]+\.[0-9]*))([eE][+-]?[0-9]+)? { ECHO; return(REAL);}
 right		{ ECHO; return(RIGHT); }
 then		{ ECHO; return(THEN); }
 
+{hex}		{ ECHO; return(HEX_LITERAL);}
 {id}		{ ECHO; return(IDENTIFIER);}
 {dec}		{ ECHO; return(INT_LITERAL); }
 {char}		{ ECHO; return(CHAR_LITERAL); }
