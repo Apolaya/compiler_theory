@@ -12,6 +12,7 @@ function main b: integer, c: integer returns integer;
      hex: integer is #2aF;
      char1: character is 'C';
      char2: character is '\t';
+     __lkj
 begin
      hex + 2;
 end;

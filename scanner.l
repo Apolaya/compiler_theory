@@ -27,7 +27,8 @@ using namespace std;
 ws		[ \t\r]+
 comment		"//".*\n
 line		[\n]
-id		[A-Za-z]([A-Za-z0-9])*
+id		[A-Za-z]([_]{0,2}[A-Za-z0-9])*	
+
 digit		[0-9]
 dec		{digit}+
 char		'([^\\]|\\[btnrf'\\])'
